@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+void Fortune()
+{
+  srand(time(NULL));
+
+  int randNum = rand() %6;
+
+  switch(randNum)
+  {
+    case 0: cout << "Don't pursue happiness – create it."; break;
+    case 1: cout << "All things are difficult before they are easy."; break;
+    case 2: cout << "The early bird gets the worm, but the second mouse gets the cheese."; break;
+    case 3: cout << "Someone in your life needs a letter from you"; break;
+    case 4: cout << "The fortune you search for is in another cookie."; break;
+    case 5: cout << "Help! I'm being held prisoner in a Chinese bakery!"; break;
+  }
+  
+  cout << "\n Lucky number: ";
+
+  for(int i = 0; i <=6; i++)
+  {
+     int luckyNum = rand() % 51;
+     cout << luckyNum << " ";
+  }
+   cout << endl;
+}
+
+
+int main() {
+
+  Fortune();
+  
+}
