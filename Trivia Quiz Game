@@ -1,0 +1,96 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <ctime>
+using namespace std;
+
+// Function declarations
+void CheckAnswer(int correctAnswer);
+void RandQuestions();
+
+int main()
+{
+    srand(time(NULL));  // For any old-style random use (optional)
+    RandQuestions();
+    return 0;
+}
+
+void CheckAnswer(int correctAnswer)
+{
+    int userAnswer;
+    cout << "\nYour answer: ";
+    cin >> userAnswer;
+
+    if (userAnswer == correctAnswer)
+        cout << "✅ You got it correct!\n\n";
+    else
+        cout << "❌ I'm sorry, that's incorrect.\n\n";
+}
+
+void RandQuestions()
+{
+    // Vector containing question indexes (0–4)
+    vector<int> questions = {0, 1, 2, 3, 4};
+
+    // Create a random generator (modern way)
+    random_device rd;
+    mt19937 gen(rd());
+    shuffle(questions.begin(), questions.end(), gen);
+
+    // Loop through all questions (in random order)
+    for (int i = 0; i < questions.size(); i++)
+    {
+        int q = questions[i]; // Current question index
+
+        switch (q)
+        {
+            case 0:
+                cout << "Q1) What is the name of the world's longest river? 💧\n"
+                     << "1) Missouri River\n"
+                     << "2) Nile\n"
+                     << "3) Amazon River\n"
+                     << "4) Yangtze River\n";
+                CheckAnswer(2);
+                break;
+
+            case 1:
+                cout << "Q2) How many bones are in the human body? 🦴\n"
+                     << "1) 206\n"
+                     << "2) 201\n"
+                     << "3) 208\n"
+                     << "4) 210\n";
+                CheckAnswer(1);
+                break;
+
+            case 2:
+                cout << "Q3) What food never spoils? 🍯\n"
+                     << "1) Honey\n"
+                     << "2) Salt\n"
+                     << "3) Sugar\n"
+                     << "4) Rice\n";
+                CheckAnswer(1);
+                break;
+
+            case 3:
+                cout << "Q4) What is the name of the tallest grass on earth? 🌾\n"
+                     << "1) Wheat\n"
+                     << "2) Bamboo\n"
+                     << "3) Corn\n"
+                     << "4) Sugarcane\n";
+                CheckAnswer(2);
+                break;
+
+            case 4:
+                cout << "Q5) How many dots are on a pair of dice? 🎲\n"
+                     << "1) 21\n"
+                     << "2) 36\n"
+                     << "3) 42\n"
+                     << "4) 48\n";
+                CheckAnswer(3);
+                break;
+        }
+    }
+
+    cout << "🎉 All questions complete! Thanks for playing!\n";
+}
