@@ -5,6 +5,9 @@
 #include <ctime>
 using namespace std;
 
+int score = 0;
+
+
 // Function declarations
 void CheckAnswer(int correctAnswer);
 void RandQuestions();
@@ -23,9 +26,32 @@ void CheckAnswer(int correctAnswer)
     cin >> userAnswer;
 
     if (userAnswer == correctAnswer)
-        cout << "✅ You got it correct!\n\n";
+    {
+        score++;
+        cout << "You got it correct! [score:" << score << "]\n\n";
+    }
+        
     else
-        cout << "❌ I'm sorry, that's incorrect.\n\n";
+    {
+        score--;
+        cout << " I'm sorry, that's incorrect. [score:" << score << "]\n\n";
+
+        switch (correctAnswer)
+        {
+        case 1:
+             cout << "Correct Answer was 1.\n";
+            break;
+        case 2:
+             cout << "Correct Answer was 2.\n";
+        case 3:
+             cout << "Correct Answer was 3.\n";
+        case 4:
+             cout << "Correct Answer was 4.\n";
+            break;
+        }
+        
+
+    }
 }
 
 void RandQuestions()
@@ -33,12 +59,12 @@ void RandQuestions()
     // Vector containing question indexes (0–4)
     vector<int> questions = {0, 1, 2, 3, 4};
 
-    // Create a random generator (modern way)
+    // Create a random generator 
     random_device rd;
     mt19937 gen(rd());
+    // Shuffle the questions vector (this randomizes the order of questions starting from index 0 to 4)
     shuffle(questions.begin(), questions.end(), gen);
 
-    // Loop through all questions (in random order)
     for (int i = 0; i < questions.size(); i++)
     {
         int q = questions[i]; // Current question index
@@ -93,4 +119,5 @@ void RandQuestions()
     }
 
     cout << "🎉 All questions complete! Thanks for playing!\n";
+    cout << "Your final score is: " << score << "\n";
 }
